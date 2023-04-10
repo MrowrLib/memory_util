@@ -2,8 +2,9 @@ set_languages("c++23")
 add_rules("mode.debug")
 set_toolchains("msvc")
 
-add_requires("spdlog")
 add_repositories("MrowrLib https://github.com/MrowrLib/package-repo.git")
+
+add_requires("spdlog")
 add_requires("StringFormatting")
 add_requires("Logging")
 
