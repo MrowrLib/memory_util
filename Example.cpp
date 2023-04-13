@@ -1,11 +1,11 @@
-#include <Logging.h>
-#include <Memory.h>
-#include <StringFormatting.h>
 #include <stdint.h>
 
+#include <_Log_>
 #include <iostream>
+#include <memory_util>
+#include <string_format>
 
-SetLogFilePath("Example.log");
+_LogToFile_("Example.log");
 
 struct SomeRandomStruct {
     uint32_t number1;
@@ -17,16 +17,16 @@ SomeRandomStruct StructInstance{.number1 = 69, .number2 = 420};
 int main() {
     auto addressOfStructInstance = reinterpret_cast<uintptr_t>(&StructInstance);
 
-    auto firstNumber  = Memory::Read<uint32_t>(addressOfStructInstance, 0);
-    auto secondNumber = Memory::Read<uint32_t>(addressOfStructInstance, 4);
+    auto firstNumber  = MemoryUtil::Read<uint32_t>(addressOfStructInstance, 0);
+    auto secondNumber = MemoryUtil::Read<uint32_t>(addressOfStructInstance, 4);
     std::cout << string_format("First number: {}", firstNumber) << std::endl;
     std::cout << string_format("Second number: {}", secondNumber) << std::endl;
 
-    Memory::Write(addressOfStructInstance, Memory::Bytes{}.Add32(12345).GetBytes());
-    Memory::Write(addressOfStructInstance + 4, Memory::Bytes{}.Add32(67890).GetBytes());
+    MemoryUtil::Write(addressOfStructInstance, MemoryUtil::Bytes{}.Add32(12345).GetBytes());
+    MemoryUtil::Write(addressOfStructInstance + 4, MemoryUtil::Bytes{}.Add32(67890).GetBytes());
 
-    firstNumber  = Memory::Read<uint32_t>(addressOfStructInstance, 0);
-    secondNumber = Memory::Read<uint32_t>(addressOfStructInstance, 4);
+    firstNumber  = MemoryUtil::Read<uint32_t>(addressOfStructInstance, 0);
+    secondNumber = MemoryUtil::Read<uint32_t>(addressOfStructInstance, 4);
     std::cout << string_format("Changed First number: {}", firstNumber) << std::endl;
     std::cout << string_format("Changed Second number: {}", secondNumber) << std::endl;
 }

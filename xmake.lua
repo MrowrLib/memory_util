@@ -1,21 +1,19 @@
-set_languages("c++23")
+set_languages("c++20")
 add_rules("mode.debug")
 set_toolchains("msvc")
 
-add_repositories("MrowrLib https://github.com/MrowrLib/package-repo.git")
+add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
 
-add_requires("spdlog")
-add_requires("StringFormatting")
-add_requires("Logging")
+add_requires("string_format", "_Log_", "spdlog")
 
-target("Memory")
+target("memory_util")
     set_kind("headeronly")
-    add_headerfiles("include/(**.h)")
+    add_headerfiles("include/memory_util", "include/(**.h)")
     add_includedirs("include", {public = true})
-    add_packages("StringFormatting", "Logging", {public = true})
+    add_packages("string_format", "_Log_", {public = true})
 
 target("Example")
     set_kind("binary")
     add_files("Example.cpp")
-    add_deps("Memory")
+    add_deps("memory_util")
     add_packages("spdlog")

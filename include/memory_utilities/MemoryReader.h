@@ -1,12 +1,11 @@
 #pragma once
 
-#include <StringFormatting.h>
-
 #include <cstdint>
 #include <string>
+#include <string_format>
 #include <vector>
 
-namespace Memory {
+namespace MemoryUtil {
 
     std::vector<uint8_t> Read(uintptr_t address, size_t size) {
         std::vector<uint8_t> bytes(size);

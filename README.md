@@ -1,2 +1,2 @@
 # Memory.h
-Memory::Read&lt;Easy>(0x69420)
+MemoryUtil::Read&lt;Easy>(0x69420)

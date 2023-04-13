@@ -1,13 +1,12 @@
 #pragma once
 
-#include <StringFormatting.h>
-
 #include <cstdint>
 #include <stdexcept>
 #include <string>
+#include <string_format>
 #include <vector>
 
-namespace Memory {
+namespace MemoryUtil {
 
     class Bytes {
         std::vector<uint8_t> _bytes;
@@ -15,6 +14,7 @@ namespace Memory {
     public:
         Bytes() = default;
         Bytes(std::vector<uint8_t> bytes) : _bytes(bytes) {}
+        Bytes(const Bytes& other) : _bytes(other._bytes) {}
 
         std::vector<uint8_t> GetBytes() { return _bytes; }
         size_t               GetByteCount() { return _bytes.size(); }
