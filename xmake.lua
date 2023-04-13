@@ -8,7 +8,7 @@ add_requires("string_format", "_Log_", "spdlog")
 
 target("memory_util")
     set_kind("headeronly")
-    add_headerfiles("include/memory_util", "include/(**.h)")
+    add_headerfiles("include/memory_util")
     add_includedirs("include", {public = true})
     add_packages("string_format", "_Log_", {public = true})
 
