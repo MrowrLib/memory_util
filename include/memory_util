@@ -91,13 +91,13 @@ namespace MemoryUtil {
         Bytes& Add(uint32_t dword) { return AddDword(dword); }
         Bytes& Add(uint64_t qword) { return AddQword(qword); }
 
-        std::string ToHexString() {
+        std::string ToHexString() const {
             std::string str;
             for (auto byte : _bytes) str += string_format("{:x} ", byte);
             return str;
         }
 
-        std::string ToEncodedString() {
+        std::string ToEncodedString() const {
             std::string str;
             for (auto byte : _bytes) str += string_format("\\x{:x}", byte);
             return str;
@@ -121,7 +121,15 @@ namespace MemoryUtil {
 
         // TODO support escaped strings (e.g. \x00)
         static Bytes FromString(const std::string& str) { return FromHexString(str); }
+
+        operator std::vector<uint8_t>() const { return _bytes; }
     };
+
+    std::string ToEncodedString(const Bytes& bytes) { return bytes.ToEncodedString(); }
+    std::string ToHexString(const Bytes& bytes) { return bytes.ToHexString(); }
+
+    // TODO support escaped strings (e.g. \x00)
+    Bytes GetBytes(const std::string& hexString) { return Bytes::FromHexString(hexString); }
 
     std::vector<uint8_t> Read(uintptr_t address, size_t size) {
         std::vector<uint8_t> bytes(size);
