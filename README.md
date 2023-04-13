@@ -76,6 +76,18 @@ void Example() {
 }
 ```
 
+## Logging
+
+This uses the [`_Log_`](https://github.com/MrowrLib/_Log_.cpp) library.
+
+If you have `spdlog` installed, this will automatically log memory write operation details to `stderr`.
+
+To specify a log file: `_LogToFile_("memory_util.log");`
+
+To disable logging: `#define Log(...)` before including `memory_util.h`
+
+> _By default, nothing will be logged unless you have `spdlog`._
+
 ## License
 
 Use however, no attribution required.
