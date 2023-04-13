@@ -4,33 +4,7 @@
 #include <memory_util>
 
 void Example() {
-    // Read
     auto dog = MemoryUtil::Read<Dog*>(0x69420);
-
-    // Follow pointers to values
-    auto number = MemoryUtil::Read<uint32_t>(0x69420, {0x4, 0x0, 0xc});
-
-    // Write
-    MemoryUtil::Write(0x69420, {0x01});
-    MemoryUtil::WriteProtected(0x69420, {0x01, 0x02}); // VirtualProtect
-
-    // Allocate
-    auto address1 = MemoryUtil::Allocate(2048);
-
-    // Free
-    MemoryUtil::Free(address1);
-
-    // Search for an Array of Bytes (with optional mask)
-    auto address2 = MemoryUtil::Find("program.exe", "\x01\x02\x03", "x?x");
-
-    // Helpful Bytes
-    Bytes bytes;
-    bytes.AddByte(0x01);
-    bytes.AddBytes({0x02, 0x03});
-    bytes.AddWord(0x0405);
-    bytes.AddDword(0x06070809);
-    bytes.AddAddress(address1);
-    std::cout << bytes.ToHexString() << std::endl;
 }
 ```
 
@@ -65,6 +39,42 @@ auto number = MemoryUtil::Read<uint32_t>(0x69420, {0x4, 0x0, 0xc});
 And I needed it for searching for arrays of bytes (AoB) in the current process.
 
 > _I also think the `Bytes` class is adorable and helpful_
+
+## How?
+
+```cpp
+#include <memory_util>
+
+void Example() {
+    // Read
+    auto dog = MemoryUtil::Read<Dog*>(0x69420);
+
+    // Follow pointers to values
+    auto number = MemoryUtil::Read<uint32_t>(0x69420, {0x4, 0x0, 0xc});
+
+    // Write
+    MemoryUtil::Write(0x69420, {0x01});
+    MemoryUtil::WriteProtected(0x69420, {0x01, 0x02}); // VirtualProtect
+
+    // Allocate
+    auto address1 = MemoryUtil::Allocate(2048);
+
+    // Free
+    MemoryUtil::Free(address1);
+
+    // Search for an Array of Bytes (with optional mask)
+    auto address2 = MemoryUtil::Find("program.exe", "\x01\x02\x03", "x?x");
+
+    // Helpful Bytes
+    Bytes bytes;
+    bytes.AddByte(0x01);
+    bytes.AddBytes({0x02, 0x03});
+    bytes.AddWord(0x0405);
+    bytes.AddDword(0x06070809);
+    bytes.AddAddress(address1);
+    std::cout << bytes.ToHexString() << std::endl;
+}
+```
 
 ## License
 
