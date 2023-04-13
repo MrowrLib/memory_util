@@ -28,7 +28,7 @@ Some helper functions for reading/writing/searching the current process memory s
 
 ## Why?
 
-I was tired of writing the same code over and over again.
+I needed a way to read/write/search the current process memory space in a way that was easy to use and read.
 
 This code is especially lovely for following multi-level pointers, e.g.
 
@@ -38,7 +38,7 @@ auto number = MemoryUtil::Read<uint32_t>(0x69420, {0x4, 0x0, 0xc});
 
 And I needed it for searching for arrays of bytes (AoB) in the current process.
 
-> _I also think the `Bytes` class is adorable and helpful_
+> _I also think the `Bytes` class is adorable and helpful!_
 
 ## How?
 
