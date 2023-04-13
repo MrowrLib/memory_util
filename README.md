@@ -63,7 +63,7 @@ void Example() {
     MemoryUtil::Free(address1);
 
     // Search for an Array of Bytes (with optional mask)
-    auto address2 = MemoryUtil::Find("program.exe", "\x01\x02\x03", "x?x");
+    auto address2 = MemoryUtil::Find("module.dll", "\x01\x02\x03", "x?x");
 
     // Helpful Bytes
     Bytes bytes;
