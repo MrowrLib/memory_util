@@ -7,6 +7,7 @@
 
 _LogToFile_("Example.log");
 
+
 struct SomeRandomStruct {
     uint32_t number1;
     uint32_t number2;
