@@ -8,6 +8,12 @@ void Example() {
 }
 ```
 
+## What?
+
+Some helper functions for reading/writing/searching the current process memory space.
+
+> _And a helpful `Bytes` utility class for managing your bytes!_
+
 ## Installation
 
 ### xmake
@@ -65,12 +71,6 @@ target_link_libraries(Example PRIVATE MrowrLib::memory_util)
 > _Update the default-registry baseline to the latest commit from https://github.com/microsoft/vcpkg_  
 > _Update the MrowrLib/Packages baseline to the latest commit from https://github.com/MrowrLib/Packages_  
 > _**Don't forget to include mrowr-log and mrowr-string-format** (these are dependencies of memory_util)_
-
-## What?
-
-Some helper functions for reading/writing/searching the current process memory space.
-
-> _And a helpful `Bytes` utility class for managing your bytes!_
 
 ## Why?
 
