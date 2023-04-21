@@ -10,6 +10,10 @@ target_include_directories(${PROJECT_NAME} INTERFACE
     $<INSTALL_INTERFACE:include>
 )
 
+find_package(string_format CONFIG REQUIRED)
+find_package(_Log_ CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} INTERFACE MrowrLib::string_format MrowrLib::_Log_)
+
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}Targets
@@ -23,7 +27,7 @@ endif()
 install(EXPORT ${PROJECT_NAME}Targets
     FILE ${PROJECT_NAME}Targets.cmake
     NAMESPACE ${namespace}::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+    DESTINATION share/${PROJECT_NAME}
 )
 
 include(CMakePackageConfigHelpers)
@@ -33,28 +37,25 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion
 )
 
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in "@PACKAGE_INIT@\n\ninclude(CMakeFindDependencyMacro)\ninclude(\"${CMAKE_INSTALL_PREFIX}/@PROJECT_NAME@Targets.cmake\")")
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in "@PACKAGE_INIT@\n\ninclude(CMakeFindDependencyMacro)\ninclude(\"\${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")")
 
 configure_package_config_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+    INSTALL_DESTINATION share/${PROJECT_NAME}
     PATH_VARS CMAKE_INSTALL_PREFIX
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO
 )
 
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+    DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_EXAMPLE)
     find_package(spdlog CONFIG REQUIRED)
-    find_path(MROWR_LOG_INCLUDE_DIRS "_Log_")
-    find_path(MROWR_STRING_FORMAT_INCLUDE_DIRS "string_format")
     add_executable(Example Example.cpp)
     target_link_libraries(Example PRIVATE ${PROJECT_NAME} spdlog::spdlog)
-    target_include_directories(Example PRIVATE ${MROWR_LOG_INCLUDE_DIRS})
-    target_include_directories(Example PRIVATE ${MROWR_STRING_FORMAT_INCLUDE_DIRS})
     target_compile_features(Example PRIVATE cxx_std_20)
 endif()
