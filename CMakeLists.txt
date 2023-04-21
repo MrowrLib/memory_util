@@ -42,7 +42,7 @@ string(CONCAT config_cmake_in
     "include(CMakeFindDependencyMacro)\n"
     "find_dependency(string_format CONFIG)\n"
     "find_dependency(_Log_ CONFIG)\n"
-    "include(\"${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")\n"
+    "include(\"\${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")\n"
 )
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake.in" "${config_cmake_in}")
 
