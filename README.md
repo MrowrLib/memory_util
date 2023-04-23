@@ -37,7 +37,7 @@ add_executable(Example main.cpp)
 
 # Find memory_util and link it to your target
 find_package(memory_util CONFIG REQUIRED)
-target_link_libraries(Example PRIVATE MrowrLib::memory_util)
+target_link_libraries(Example PRIVATE memory_util::memory_util)
 ```
 
 #### `vcpkg.json`

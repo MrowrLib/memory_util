@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 project(memory_util VERSION 0.1.0 LANGUAGES CXX)
-set(namespace MrowrLib)
+set(namespace memory_util)
 
 option(BUILD_EXAMPLE "Build the example target" ON)
 
@@ -12,7 +12,7 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 
 find_package(string_format CONFIG REQUIRED)
 find_package(_Log_ CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} INTERFACE MrowrLib::string_format MrowrLib::_Log_)
+target_link_libraries(${PROJECT_NAME} INTERFACE string_format::string_format _Log_::_Log_)
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
