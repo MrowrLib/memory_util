@@ -1,12 +1,11 @@
+// #include <_Log_.h>
+#include <memory_util.h>
 #include <stdint.h>
+#include <string_format.h>
 
-#include <_Log_>
 #include <iostream>
-#include <memory_util>
-#include <string_format>
 
-_LogToFile_("Example.log");
-
+// _LogToFile_("Example.log");
 
 struct SomeRandomStruct {
     uint32_t number1;

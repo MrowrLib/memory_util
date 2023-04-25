@@ -1,7 +1,7 @@
-# `#include <memory_util>`
+# `#include <memory_util.h>`
 
 ```cpp
-#include <memory_util>
+#include <memory_util.h>
 
 void Example() {
     auto dog = MemoryUtil::Read<Dog*>(0x69420);
@@ -89,7 +89,7 @@ And I needed it for searching for arrays of bytes (AoB) in the current process.
 ## How?
 
 ```cpp
-#include <memory_util>
+#include <memory_util.h>
 
 void Example() {
     // Read
