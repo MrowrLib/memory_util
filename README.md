@@ -61,7 +61,7 @@ target_link_libraries(Example PRIVATE memory_util::memory_util)
         {
             "kind": "git",
             "repository": "https://github.com/MrowrLib/Packages.git",
-            "baseline": "6e1884a73e89d614682de6c28107ef888d99f8a1",
+            "baseline": "c8ba8e5dca23252cb7ca3bde188226ab9922b2a1",
             "packages": ["mrowr-memory-util", "mrowr-log", "mrowr-string-format"]
         }
     ]
