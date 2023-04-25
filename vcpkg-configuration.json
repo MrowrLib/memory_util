@@ -2,13 +2,13 @@
     "default-registry": {
         "kind": "git",
         "repository": "https://github.com/microsoft/vcpkg.git",
-        "baseline": "501db0f17ef6df184fcdbfbe0f87cde2313b6ab1"
+        "baseline": "95252eadd63118201b0d0df0b4360fa613f0de84"
     },
     "registries": [
         {
             "kind": "git",
             "repository": "https://github.com/MrowrLib/Packages.git",
-            "baseline": "70e5df9d32678690c9966c193dfdbb10e27f10f8",
+            "baseline": "4ec6e3da983c27596d6d36c25da0080117b2eeb3",
             "packages": ["mrowr-string-format", "mrowr-log"]
         }
     ]

@@ -8,23 +8,69 @@ void Example() {
 }
 ```
 
-## Installation
-
-```lua
--- xmake
-add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
-add_requires("memory_util")
-```
-
-```cmake
-# CMake/vcpkg (coming soon)
-```
-
 ## What?
 
 Some helper functions for reading/writing/searching the current process memory space.
 
 > _And a helpful `Bytes` utility class for managing your bytes!_
+
+## Installation
+
+### xmake
+
+#### `xmake.lua`
+
+```lua
+add_repositories("MrowrLib https://github.com/MrowrLib/Packages.git")
+add_requires("memory_util")
+
+target("Example")
+    add_packages("memory_util")
+```
+
+### vcpkg
+
+#### `CMakeLists.txt`
+
+```cmake
+add_executable(Example main.cpp)
+
+# Find memory_util and link it to your target
+find_package(memory_util CONFIG REQUIRED)
+target_link_libraries(Example PRIVATE memory_util::memory_util)
+```
+
+#### `vcpkg.json`
+
+```json
+{
+    "dependencies": ["mrowr-memory-util"]
+}
+```
+
+#### `vcpkg-configuration.json`
+
+```json
+{
+    "default-registry": {
+        "kind": "git",
+        "repository": "https://github.com/microsoft/vcpkg.git",
+        "baseline": "95252eadd63118201b0d0df0b4360fa613f0de84"
+    },
+    "registries": [
+        {
+            "kind": "git",
+            "repository": "https://github.com/MrowrLib/Packages.git",
+            "baseline": "6e1884a73e89d614682de6c28107ef888d99f8a1",
+            "packages": ["mrowr-memory-util", "mrowr-log", "mrowr-string-format"]
+        }
+    ]
+}
+```
+
+> _Update the default-registry baseline to the latest commit from https://github.com/microsoft/vcpkg_  
+> _Update the MrowrLib/Packages baseline to the latest commit from https://github.com/MrowrLib/Packages_  
+> _**Don't forget to include mrowr-log and mrowr-string-format** (these are dependencies of memory_util)_
 
 ## Why?
 
